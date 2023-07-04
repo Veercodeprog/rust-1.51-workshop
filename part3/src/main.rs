@@ -14,26 +14,38 @@ impl City {
     fn new(city_size: CitySize, is_coastal: bool) -> City {
         let (description, residents) = match city_size {
             CitySize::Town => {
-                let residents = 1_000;
+                let residents:u64 = 1_000;
 
                 (
-                    format!("a *town* of approximately {} residents", residents),
+                    format!("a town  of approximately {} residents", residents),
                     residents,
                 )
-            }
+     },
             // 👉 TODO Handle the other CitySize variants individually,
             //    in a similar way to how *town* is handled here
-            _ => {
-                let residents = 1_000;
+         CitySize::City  => {
+                let residents:u64 = 10_000;
 
                 (
                     format!(
-                        "an *unknown-size city* of approximately {} residents",
+                        "an * city* of approximately {} residents",
                         residents
                     ),
                     residents,
                 )
-            }
+            },
+  CitySize::Metropolis  => {
+                let residents:u64 = 1_000_000;
+
+                (
+                    format!(
+                        "a *Metropolis* of approximately {} residents",
+                        residents
+                    ),
+                    residents,
+                )
+            },
+
         };
 
         City {
@@ -46,11 +58,7 @@ impl City {
 
 fn main() {
     // 👉 TODO Use City::new() to create a Metropolis-sized city here
-    let rustville = City {
-        description: String::new(),
-        residents: 0,
-    };
-
+    let rustville: City = City::new(CitySize::Metropolis, true );
     println!("This city is {}", rustville.description);
 
     if rustville.residents > 100_000 {

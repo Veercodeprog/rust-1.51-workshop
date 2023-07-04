@@ -1,7 +1,11 @@
 fn main() {
-    let city_names = vec!["Pythonia", "Javasburg", "C by the Sea", "Rustville"];
-
-    let last_city = "👉 TODO Use .pop() to remove the last city from the list.";
+    let mut city_names = vec!["Pythonia", "Javasburg", "C by the Sea", "Rustville"];
+ 
+    let last_city: &str  = match  city_names.pop() {
+        Some(inner_value) => { inner_value }
+        None => { "" }
+     
+ };
     // 💡 TIP: Here's an example of pattern matching syntax:
     //
     //     match some_option_value {
@@ -17,6 +21,11 @@ fn main() {
 
     // 👉 TODO now that we've done that, use `.push()` to put last_city
     //    back in `city_names`.
+    
+    for city_names: &&str in city_names.iter() {
+        println!("city_names: {}", city_names);
+    }   
+
 
     println!("Here is the full list of cities:");
     // 👉 TODO print each of the city names.
